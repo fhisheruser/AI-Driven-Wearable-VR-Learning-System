@@ -1,0 +1,39 @@
+# Core AI/ML
+openai-whisper>=20231117
+torch>=2.0.0
+transformers>=4.35.0
+sentence-transformers>=2.2.0
+
+# Reinforcement Learning
+gymnasium>=0.29.0
+stable-baselines3>=2.1.0
+
+# NLP
+spacy>=3.7.0
+nltk>=3.8.0
+
+# Web Framework
+fastapi>=0.104.0
+uvicorn>=0.24.0
+python-multipart>=0.0.6
+websockets>=12.0
+jinja2>=3.1.2
+
+# Audio Processing
+soundfile>=0.12.0
+librosa>=0.10.0
+numpy>=1.24.0
+
+# 3D Visualization Support
+trimesh>=4.0.0
+Pillow>=10.0.0
+
+# Data & Config
+pydantic>=2.5.0
+pyyaml>=6.0.0
+python-dotenv>=1.0.0
+
+# Testing
+pytest>=7.4.0
+pytest-asyncio>=0.23.0
+httpx>=0.25.0

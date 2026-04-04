@@ -1,0 +1,30 @@
+from setuptools import setup, find_packages
+
+setup(
+    name="ai-vr-learning-system",
+    version="1.0.0",
+    description="An AI-Driven Wearable Virtual Reality Learning System for Enhanced Visualization and Personalized Education",
+    author="Leena Rajan Katkar",
+    author_email="lkatkar@usc.edu",
+    packages=find_packages(where="src"),
+    package_dir={"": "src"},
+    python_requires=">=3.9",
+    install_requires=[
+        "openai-whisper>=20231117",
+        "torch>=2.0.0",
+        "transformers>=4.35.0",
+        "sentence-transformers>=2.2.0",
+        "gymnasium>=0.29.0",
+        "stable-baselines3>=2.1.0",
+        "spacy>=3.7.0",
+        "fastapi>=0.104.0",
+        "uvicorn>=0.24.0",
+        "python-multipart>=0.0.6",
+        "websockets>=12.0",
+        "jinja2>=3.1.2",
+        "soundfile>=0.12.0",
+        "numpy>=1.24.0",
+        "pydantic>=2.5.0",
+        "pyyaml>=6.0.0",
+    ],
+)

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI-Driven VR Learning System</title>
+    <link rel="stylesheet" href="/static/css/main.css">
+</head>
+<body>
+    <div id="app">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-left">
+                <div class="logo">&#127891;</div>
+                <h1>AI-Driven VR Learning System</h1>
+            </div>
+            <div class="header-right">
+                <span class="status-badge" id="status-badge">Initializing...</span>
+                <select id="domain-select">
+                    <option value="">All Domains</option>
+                    <option value="chemistry">Chemistry</option>
+                    <option value="biology">Biology</option>
+                    <option value="physics">Physics</option>
+                    <option value="mathematics">Mathematics</option>
+                    <option value="anatomy">Anatomy</option>
+                    <option value="engineering">Engineering</option>
+                </select>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Left Panel: Chat & Input -->
+            <div class="panel left-panel">
+                <div class="panel-header">
+                    <h2>Ask a Question</h2>
+                    <button id="btn-reset" class="btn-secondary" title="Reset session">Reset</button>
+                </div>
+
+                <!-- Chat History -->
+                <div class="chat-container" id="chat-container">
+                    <div class="chat-message system">
+                        <p>Welcome! Ask me any question about science, math, or engineering. I'll create an immersive 3D visualization to help you learn.</p>
+                        <p class="hint">Try: "How does the solar system work?" or "Show me a water molecule"</p>
+                    </div>
+                </div>
+
+                <!-- Input Area -->
+                <div class="input-area">
+                    <div class="input-row">
+                        <input type="text" id="query-input" placeholder="Ask a question..." autocomplete="off">
+                        <button id="btn-send" class="btn-primary">Send</button>
+                    </div>
+                    <div class="quick-queries">
+                        <button class="chip" data-query="How does the solar system work?">Solar System</button>
+                        <button class="chip" data-query="Show me a water molecule">Water Molecule</button>
+                        <button class="chip" data-query="Explain the human heart">Human Heart</button>
+                        <button class="chip" data-query="What is the Pythagorean theorem?">Pythagorean</button>
+                        <button class="chip" data-query="Show me a DNA double helix">DNA Helix</button>
+                        <button class="chip" data-query="Explain how gears work">Gears</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Center Panel: 3D Visualization -->
+            <div class="panel center-panel">
+                <div class="panel-header">
+                    <h2 id="viz-title">3D Visualization</h2>
+                    <div class="viz-controls">
+                        <button id="btn-rotate" class="btn-icon" title="Auto-rotate">&#10227;</button>
+                        <button id="btn-labels" class="btn-icon active" title="Toggle labels">Labels</button>
+                        <button id="btn-fullscreen" class="btn-icon" title="Fullscreen">&#9974;</button>
+                    </div>
+                </div>
+                <div class="viz-container" id="viz-container">
+                    <div class="viz-placeholder" id="viz-placeholder">
+                        <div class="placeholder-icon">&#127760;</div>
+                        <p>Ask a question to generate a 3D visualization</p>
+                    </div>
+                    <canvas id="viz-canvas"></canvas>
+                </div>
+                <!-- Annotations Overlay -->
+                <div class="annotations-overlay" id="annotations-overlay"></div>
+                <!-- Step-by-step controls -->
+                <div class="step-controls" id="step-controls" style="display:none;">
+                    <button id="btn-prev-step" class="btn-secondary">&larr; Previous</button>
+                    <span id="step-indicator">Step 1 / 1</span>
+                    <button id="btn-next-step" class="btn-secondary">Next &rarr;</button>
+                </div>
+            </div>
+
+            <!-- Right Panel: Information -->
+            <div class="panel right-panel">
+                <!-- Explanation -->
+                <div class="info-section">
+                    <h3>Explanation</h3>
+                    <div id="explanation-content" class="info-content">
+                        <p class="placeholder-text">Explanation will appear here after you ask a question.</p>
+                    </div>
+                </div>
+
+                <!-- Learning Sequence -->
+                <div class="info-section">
+                    <h3>Learning Path</h3>
+                    <div id="sequence-content" class="info-content">
+                        <ul id="sequence-list" class="sequence-list"></ul>
+                    </div>
+                </div>
+
+                <!-- Related Topics -->
+                <div class="info-section">
+                    <h3>Related Topics</h3>
+                    <div id="related-content" class="info-content">
+                        <div id="related-chips" class="related-chips"></div>
+                    </div>
+                </div>
+
+                <!-- Adaptation Info -->
+                <div class="info-section">
+                    <h3>Personalization</h3>
+                    <div id="adaptation-content" class="info-content">
+                        <div class="metric-row">
+                            <span>Difficulty:</span>
+                            <span id="metric-difficulty" class="metric-value">--</span>
+                        </div>
+                        <div class="metric-row">
+                            <span>Depth:</span>
+                            <span id="metric-depth" class="metric-value">--</span>
+                        </div>
+                        <div class="metric-row">
+                            <span>Pacing:</span>
+                            <span id="metric-pacing" class="metric-value">--</span>
+                        </div>
+                        <div class="metric-row">
+                            <span>Latency:</span>
+                            <span id="metric-latency" class="metric-value">--</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Feedback -->
+                <div class="info-section">
+                    <h3>Rate this explanation</h3>
+                    <div class="feedback-stars" id="feedback-stars">
+                        <button class="star" data-rating="1">&#9733;</button>
+                        <button class="star" data-rating="2">&#9733;</button>
+                        <button class="star" data-rating="3">&#9733;</button>
+                        <button class="star" data-rating="4">&#9733;</button>
+                        <button class="star" data-rating="5">&#9733;</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="/static/js/renderer.js"></script>
+    <script src="/static/js/app.js"></script>
+</body>
+</html>

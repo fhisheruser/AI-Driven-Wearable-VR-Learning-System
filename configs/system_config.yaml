@@ -1,0 +1,67 @@
+# AI-Driven Wearable VR Learning System Configuration
+
+asr:
+  model_size: "base"        # tiny, base, small, medium, large
+  language: "en"
+  beam_size: 5
+  word_error_rate_target: 0.05  # Target WER < 5%
+  vad_threshold: 0.5            # Voice Activity Detection threshold
+
+nlu:
+  model_name: "distilbert-base-uncased"
+  max_sequence_length: 128
+  intent_confidence_threshold: 0.6
+  supported_intents:
+    - conceptual_explanation
+    - procedural_question
+    - visual_representation
+    - elaboration
+    - quiz_request
+    - topic_change
+
+knowledge:
+  domains:
+    - chemistry
+    - biology
+    - physics
+    - mathematics
+    - engineering
+    - anatomy
+  curriculum_standards:
+    - K12
+    - undergraduate
+    - graduate
+
+personalization:
+  algorithm: "PPO"
+  learning_rate: 0.0003
+  gamma: 0.99
+  clip_range: 0.2
+  n_steps: 128
+  batch_size: 64
+  difficulty_levels: 5
+  adaptation_rate: 0.1
+
+visualization:
+  target_fps: 30
+  max_latency_ms: 2000
+  render_quality: "medium"
+  supported_types:
+    - 3d_model
+    - animation
+    - step_by_step
+    - contextual_overlay
+    - video
+
+display:
+  fov_degrees: 52
+  resolution: [1280, 720]
+  transparency: 0.85
+  depth_range: [0.5, 10.0]
+
+evaluation:
+  participant_count: 60
+  asr_accuracy_target: 0.95
+  latency_target_seconds: 2.0
+  fps_target: 30
+  confidence_level: 0.95
