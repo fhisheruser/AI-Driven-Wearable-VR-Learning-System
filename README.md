@@ -66,44 +66,19 @@ The system targets an end-to-end response latency of **under 2 seconds** and ASR
 
 ## System Architecture
 
-```
-                          +---------------------------+
-                          |     AI SMART GLASSES       |
-                          |  Microphone  |  Camera     |
-                          |  Display Lenses            |
-                          +------------++--------------+
-                                       ||
-                                       vv
-+------------------------------------------------------------------------------+
-|                           AI PROCESSING PIPELINE                             |
-|                                                                              |
-|  +----------+    +-----------+    +------------+    +----------------+       |
-|  |   ASR    |--->|    NLU    |--->| Knowledge  |--->| Visualization  |       |
-|  | (Whisper)|    | (Semantic |    |  Reasoning |    |    Engine      |       |
-|  |          |    |  Analysis)|    |  Engine    |    | (3D Scenes)    |       |
-|  +----------+    +-----------+    +------------+    +----------------+       |
-|       |                                                      |               |
-|       |          +----------------+                          |               |
-|       +--------->| Personalization|<-------------------------+               |
-|                  | (PPO Adaptive  |                                          |
-|                  |  Engine)       |                                          |
-|                  +-------+--------+                                          |
-|                          |                                                   |
-|                  +-------v--------+                                          |
-|                  |   Feedback     |                                          |
-|                  |  Collector     |                                          |
-|                  +----------------+                                          |
-+------------------------------------------------------------------------------+
-                                       ||
-                                       vv
-                          +---------------------------+
-                          |   FastAPI Server           |
-                          |   REST + WebSocket         |
-                          |   Three.js Frontend        |
-                          +---------------------------+
-```
-
----
+```mermaid
+flowchart TD
+    G["🕶️ AI Smart Glasses<br/>Microphone · Camera · Display Lenses"] --> ASR["🎤 ASR<br/>(Whisper + noise reduction)"]
+    ASR --> NLU["🧠 NLU<br/>(intent + semantic analysis)"]
+    NLU --> KE["📚 Knowledge Reasoning Engine<br/>(40+ concept ontology)"]
+    KE --> VE["🌐 Visualization Engine<br/>(3D scene generation)"]
+    KE --> PE["🎯 Personalization Engine<br/>(PPO adaptive RL)"]
+    PE --> VE
+    VE --> FB["🔁 Feedback Collector"]
+    FB --> PE
+    VE --> API["⚡ FastAPI Server<br/>REST + WebSocket"]
+    API --> FE["🖥️ Three.js Frontend<br/>(interactive 3D)"]
+    FE --> G
 
 ## Project Structure
 
